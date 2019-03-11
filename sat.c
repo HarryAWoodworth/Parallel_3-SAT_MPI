@@ -168,3 +168,21 @@ int interpret(formula *f, assignment *a)
       return -1;
   }
 }
+
+// Increment the boolean values in a 
+// by simulating binary addition
+// return true if a is all 1's
+bool incA(assignment *a)
+{
+  bool allOnes = true;
+  for(int index = 0; index < a->size; index++)
+  {
+    if(a->map[index] == 0) {
+      allOnes = false;
+      break;
+    }
+  }
+  if(allOnes) { return true; }
+
+  ////////////////////// STOPPPED HERE!!!!!
+}

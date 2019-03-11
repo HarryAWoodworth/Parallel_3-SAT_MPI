@@ -62,4 +62,7 @@ void free_assignment(assignment *a);
 // Interpret function
 int interpret(formula *f, assignment *a);
 
+// Increment map function
+bool incA(assignment *a);
+
 #endif

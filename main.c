@@ -30,6 +30,10 @@ int main(int argc, char **argv) {
     int returnVal = interpret(f,a);
     printf("Answer: %d\n",returnVal);
 	
+    for(int i = 0; i < a->size; i++) {
+    	printf("map[%d]: %d\n",i, a->map[i]);
+    }
+
 	/*
 		a->map[0] = 1;
 		a->map[1] = 1;
