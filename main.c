@@ -15,16 +15,21 @@ int main(int argc, char **argv) {
 	init_lib(argv[1]);
 
   while (1) {
+  	// Decodes and forms the formula
     formula *f = next_formula();
 		if (f == NULL) {
 			break;
 		}
+	// Makes a default assignment for the formula
     assignment *a = make_assignment(f);
+
+// do your thing
 
     pretty_print(f);
     printf("\n");
-	// do your thing
-
+    int returnVal = interpret(f,a);
+    printf("Answer: %d\n",returnVal);
+	
 	/*
 		a->map[0] = 1;
 		a->map[1] = 1;

@@ -132,5 +132,39 @@ void free_assignment(assignment *a) {
 // Evaluates f (0: false 1: true)
 int interpret(formula *f, assignment *a)
 {
-  return 0;
+  switch (f->conn) {
+    // Go through the chain of clauses and return 
+    // 1 if all are true, otherwise return 0
+    case AND: {
+      if(interpret(f->land.f,a) == 1) {
+        if(f->land.next != NULL) {
+          return interpret(f->land.next,a);
+        } 
+        return 1;
+      } 
+      return 0;
+    }
+    // If any of the three formulas return true, return 1
+    // otherwise return 0
+    case OR: {
+      if(interpret(f->lor.f1,a) == 1) return 1;
+      if(interpret(f->lor.f2,a) == 1) return 1;
+      if(interpret(f->lor.f3,a) == 1) return 1;
+      return 0;
+    }
+    // Return the opposite of the interpretation
+    // of the formula
+    case NEG: {
+      int ret = interpret(f->lneg.f,a);
+      if(ret == 0) return 1;
+      if(ret == 1) return 0;
+      return -1;
+    }
+    // Return the literal from assignment map (0 or 1)
+    case VAR: {
+      return a->map[f->lvar.lit];
+    }
+    default: 
+      return -1;
+  }
 }

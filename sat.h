@@ -59,4 +59,7 @@ assignment* make_assignment(formula *f);
 void free_formula(formula *f);
 void free_assignment(assignment *a);
 
+// Interpret function
+int interpret(formula *f, assignment *a);
+
 #endif
