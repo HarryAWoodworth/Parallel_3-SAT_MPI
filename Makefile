@@ -8,6 +8,12 @@ sat: sat.h sat.c
 main: sat 
 	gcc $(CFLAGS) --std=c11 -o main main.c sat.o libutil.a
 
+run-simple: main simple.txt
+	./main simple.txt
+
+run-test: main test.txt
+	./main test.txt
+
 .PHONY: clean
 
 clean:

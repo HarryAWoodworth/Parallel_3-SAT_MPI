@@ -21,7 +21,15 @@ int main(int argc, char **argv) {
 		}
     assignment *a = make_assignment(f);
 
-		// do your thing
+    pretty_print(f);
+    printf("\n");
+	// do your thing
+
+	/*
+		a->map[0] = 1;
+		a->map[1] = 1;
+		a->map[2] = 0;
+	*/
 
     free_assignment(a);
     free_formula(f);

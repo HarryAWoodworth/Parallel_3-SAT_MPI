@@ -7,25 +7,38 @@
 typedef enum { AND, OR, NEG, VAR } connective;
 
 // Encoding of a formula in 3-SAT form in C
-typedef struct formula {
-  union {
-    struct {
-      struct formula *f;
-      struct formula *next; // Points to the next AND clause
-    } land;
-    struct {
-      struct formula *f1;
-      struct formula *f2;
-      struct formula *f3;
+typedef struct formula
+{
+  union
+  {
+
+    struct // AND (X /\ Y)
+    {
+      struct formula *f; // [X]
+      struct formula *next; // [Y] Points to the next AND clause
+    } land; 
+
+    struct // OR (X \/ Y \/ Z)
+    {
+      struct formula *f1; // [X]
+      struct formula *f2; // [Y]
+      struct formula *f3; // [Z]
     } lor;
-    struct {
-      struct formula *f;
+
+    struct // NEG (!X)
+    {
+      struct formula *f; // [X]
     } lneg;
-    struct {
-      int lit;
+
+    struct // Variable (X)
+    {
+      int lit; // Int literal (0 for false, 1 for true)
     } lvar;
+
   };
-  connective conn;
+
+  connective conn; // Enum for AND, OR, NEG, VAR
+
 } formula;
 
 typedef struct assignment {
