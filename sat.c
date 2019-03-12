@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 // Form a formula with default values from a connective and return it
 // (AND, OR, NEG, VAR)
@@ -171,18 +172,22 @@ int interpret(formula *f, assignment *a)
 
 // Increment the boolean values in a 
 // by simulating binary addition
-// return true if a is all 1's
-bool incA(assignment *a)
+// return true if a is at the end
+bool incA(assignment *a, int end)
 {
-  bool allOnes = true;
-  for(int index = 0; index < a->size; index++)
+  for(int i = 0; i < a->size; i++)
   {
-    if(a->map[index] == 0) {
-      allOnes = false;
-      break;
-    }
+    if(a->map[i] == 0) { a->map[i] = 1; break; }
+    if(a->map[i] == 1) { a->map[i] = 0; }
   }
-  if(allOnes) { return true; }
 
-  ////////////////////// STOPPPED HERE!!!!!
+  int totalMapValue = 0;
+  for(int i = 0; i < a->size; i++)
+  {
+    totalMapValue += (((int) pow((double)10,(double)i)) * a->map[i]);
+  }
+
+  if(totalMapValue == end) return true;
+  return false;
+
 }

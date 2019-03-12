@@ -2,6 +2,7 @@
 #define __SAT_H
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 // Type of connective
 typedef enum { AND, OR, NEG, VAR } connective;
@@ -63,6 +64,6 @@ void free_assignment(assignment *a);
 int interpret(formula *f, assignment *a);
 
 // Increment map function
-bool incA(assignment *a);
+bool incA(assignment *a, int end);
 
 #endif

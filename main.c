@@ -20,26 +20,20 @@ int main(int argc, char **argv) {
 		if (f == NULL) {
 			break;
 		}
+
 	// Makes a default assignment for the formula
     assignment *a = make_assignment(f);
 
 // do your thing
-
+    /*
     pretty_print(f);
     printf("\n");
     int returnVal = interpret(f,a);
     printf("Answer: %d\n",returnVal);
 	
-    for(int i = 0; i < a->size; i++) {
-    	printf("map[%d]: %d\n",i, a->map[i]);
-    }
-
-	/*
-		a->map[0] = 1;
-		a->map[1] = 1;
-		a->map[2] = 0;
-	*/
-
+	// If a is maxed out, return 0
+	if(incA(a)) { printf("0"); }
+*/
     free_assignment(a);
     free_formula(f);
   }
